@@ -1,14 +1,15 @@
 import React from "react";
 import ProductCard from "./ProductCard ";
-import Nav from "./Nav";
+// import Navbar from "./Navbar";
 
 function ProductList({ products, onAddToCart, cartItems }) {
   return (
     <div>
-      <Nav cartItemsCount={cartItems.length} />
-      <h2>Product List</h2>
+      {/* <Navbar cartItemsCount={cartItems.length} /> */}
+      <h2 className="shop">Product List</h2>
+      <div className="products">
       {products?.map((product) => (
-        <ProductCard
+        <ProductCard 
           name={product.name}
           price={product.price}
           description={product.description}
@@ -16,6 +17,7 @@ function ProductList({ products, onAddToCart, cartItems }) {
           onAddToCart={() => onAddToCart(product)}
         />
       ))}
+       </div>
     </div>
   );
 }

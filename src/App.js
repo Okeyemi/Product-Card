@@ -1,28 +1,33 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProductList from './components/ProductList ';
 import Cart from './components/Cart';
 import './App.css';
 import { useEffect, useState } from 'react';
-import {data} from './data/data'
+// import {data} from './data/data';
+import Navbar from './components/Navbar';
+// import axios from 'axios';
 
 function App() {
   const [products, setProducts] = useState()
   const [cartItems, setCartItems] = useState([])
 
   useEffect(() => {
-    //MAKE YOUR API CALL HERE TO PROVIDE THE APPLICATION WITH THE PRODUCT LIST FROM THE PRODUCT LIST ENDPOINT
-    //ON YOUR EXPRESS BACKEND
-    const loadData = async () => {
-      
-      setProducts(data)
+   
+    const loadData =  () => {
+      fetch('https://test-wyf4.onrender.com/api/products')
+      .then(response => response.json())
+      .then(data => setProducts(data))
+      .catch(error => console.log(error));
+      // setProducts(data)
+      // console.log(oga)
     }
 
     loadData();
   },[])
 
   const onAddToCart = (product) => {
-   //MAKE AN API CALL TO POST A PRODUCT DATA TO THE ADD TO CART ENDPOINT
-    console.log(product)
+    fetch('https://test-wyf4.onrender.com/api/products')
+    // console.log(product)
     const itemExists = cartItems.find(element => element.id === product.id);
     
     if(itemExists) return
@@ -31,7 +36,13 @@ function App() {
     
   }
 
-  const onRemoveFromCart = (id) => {
+  const onRemoveFromCart = async (id) => {
+     fetch('https://test-wyf4.onrender.com/api/cart', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
     //MAKE AN API CALL AND UPDATE THE STATE BASED ON THE RETRUNED ARRAY ELEMENTS
     //__________________________________________________________________________
     const updatedCart = cartItems.filter(cartItem => cartItem.id !== id);
@@ -41,13 +52,13 @@ function App() {
 
   return (
     <div className="App">
-      
-     <BrowserRouter>
+     <Router>
+        <Navbar />
       <Routes>
           <Route path="/" element={<ProductList products={products} cartItems={cartItems} onAddToCart={onAddToCart} />}/>
           <Route path="/cart" element={<Cart cartItems={cartItems} onRemoveFromCart={onRemoveFromCart}/>}/>
       </Routes>
-    </BrowserRouter>
+    </Router>
     </div>
   );
 }

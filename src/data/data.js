@@ -1,24 +1,24 @@
 const data = [
   {
     id: 1,
-    name: 'A random product',
-    price: 10,
-    description: 'Agood product',
+    name: 'SHOE',
+    price: 10.00,
+    description: 'Nike Air Max 1 Sprite ID',
     image: 'https://placehold.co/100'
   },
 
   {
     id: 2,
-    name: 'Another random product',
-    price: 20,
+    name: 'WATCH',
+    price: 20.00,
     description: 'good product from experience',
     image: 'https://placehold.co/100'
   },
   {
     id: 3,
-    name: 'Third random product',
+    name: 'Product C',
     price: 109.99999,
-    description: 'Agood product',
+    description: 'A good product',
     image: 'https://placehold.co/100'
   },
 
