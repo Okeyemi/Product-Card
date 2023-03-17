@@ -48,11 +48,22 @@ body {
   place-items: center;
 }
 
-.product {
+/* .product {
   border-radius: 15px;
   width: 250px;
   height: 350px;
   margin: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
+.product {
+  border-radius: 15px;
+  width: 250px;
+  height: 350px;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
